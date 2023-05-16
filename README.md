@@ -1,1 +1,1 @@
-# SplotPlatformer
+# Splot Platformer
