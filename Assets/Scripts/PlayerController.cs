@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
             0f,
             Vector2.right * Mathf.Sign(_horizontalInput),
             0.1f,
-            WallLayer))
+            GroundLayer))
         {
             _lastWalledTimer = CoyoteWallBuffer;
             return true;
