@@ -52,13 +52,20 @@ public class PlayerController : MonoBehaviour
     [Header("Other")]
 
     [SerializeField] float MaxFallSpeed;
+    [SerializeField] float RespawnInputTimer;
 
     private bool _isDead = false;
+    private float _respawnInputTimer;
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    private void Start() => _respawnInputTimer = RespawnInputTimer;
+
     void Update()
     {
+        if (_respawnInputTimer > 0)
+            return;
+
         if (_isDead)
         {
             rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -114,13 +121,12 @@ public class PlayerController : MonoBehaviour
         UpdateTimers();
     }
 
-
-
     private void UpdateTimers()
     {
         _lastGroundedTimer -= Time.fixedDeltaTime;
         _lastJumpedTimer -= Time.fixedDeltaTime;
         _lastWalledTimer -= Time.fixedDeltaTime;
+        _respawnInputTimer -= Time.fixedDeltaTime;
     }
 
     private void AddMovement()

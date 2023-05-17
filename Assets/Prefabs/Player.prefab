@@ -143,7 +143,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.24431522
+  m_Radius: 0.21114886
 --- !u!61 &1087112068774813546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48856714, y: 0.25013733}
+  m_Size: {x: 0.42183182, y: 0.25013733}
   m_EdgeRadius: 0
 --- !u!50 &1087112068774813547
 Rigidbody2D:
@@ -207,13 +207,13 @@ MonoBehaviour:
   SplatPS: {fileID: 1087112068832834062}
   TopSpeed: 7
   Acceleration: 10
-  Friction: 0.8
+  Friction: 0.9
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
   PlayerCollider: {fileID: 1087112068774813546}
-  JumpPower: 12.5
-  JumpCutoff: 0.5
+  JumpPower: 10.5
+  JumpCutoff: 0.3
   fallGravity: 2
   JumpBuffer: 0.15
   CoyoteBuffer: 0.1
@@ -223,6 +223,7 @@ MonoBehaviour:
   WallSlideSpeed: 1
   CoyoteWallBuffer: 0
   MaxFallSpeed: 13
+  RespawnInputTimer: 0.2
 --- !u!1 &1087112068832834063
 GameObject:
   m_ObjectHideFlags: 0
@@ -5087,7 +5088,7 @@ MonoBehaviour:
   m_Intensity: 0.32
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 491a5c1c
+  m_ApplyToSortingLayers: 491a5c1c00000000fb1d78c0391bfe28
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

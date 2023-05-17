@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class DeathManager : MonoBehaviour
 {
-    [SerializeField] GameObject StartCheckpoint;
+    public static DeathManager Instance { get; private set; }
+
     [SerializeField] GameObject PlayerPrefab;
 
     [SerializeField] float RespawnDelay;
 
+    [SerializeField] float CameraShakeIntensity;
+    [SerializeField] float CameraShakeTime;
+
     private GameObject[] _allCheckpoints;
     private bool _isRespawning;
     private Vector2 _respawnPosition;
-    private uint _totalDeaths = 0;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -51,6 +59,9 @@ public class DeathManager : MonoBehaviour
     {
         if (_isRespawning)
             return;
+
+        CinemachineShake.Instance.ShakeCamera(CameraShakeIntensity, CameraShakeTime);
+
         _isRespawning = true;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -61,9 +72,7 @@ public class DeathManager : MonoBehaviour
         player.GetComponent<PlayerController>().Kill();
         player.GetComponent<PlayerAnimation>().StartDeathAnimation();
 
-        Invoke("DestroyPlayer", 0.5f);
-
-        _totalDeaths++;
+        Invoke("DestroyPlayer", 0.3f);
 
         Invoke("ResetSpawner", RespawnDelay);
         Invoke("SpawnPlayer", RespawnDelay);
