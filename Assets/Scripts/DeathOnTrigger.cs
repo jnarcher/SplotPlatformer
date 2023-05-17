@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spikes : MonoBehaviour
+public class DeathOnTrigger : MonoBehaviour
 {
     private DeathManager deathManager;
 
@@ -11,8 +11,5 @@ public class Spikes : MonoBehaviour
         deathManager = GameObject.FindGameObjectWithTag("DeathManager").GetComponent<DeathManager>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        deathManager.Respawn();
-    }
+    private void OnTriggerEnter2D(Collider2D _) => deathManager.Respawn();
 }

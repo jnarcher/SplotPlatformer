@@ -36,4 +36,6 @@ public class PlayerAnimation : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 0);
 
     }
+
+    public void StartDeathAnimation() => Animator.SetBool("Death", true);
 }

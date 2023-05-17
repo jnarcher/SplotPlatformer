@@ -12,6 +12,7 @@ public class DeathManager : MonoBehaviour
     private GameObject[] _allCheckpoints;
     private bool _isRespawning;
     private Vector2 _respawnPosition;
+    private uint _totalDeaths = 0;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class DeathManager : MonoBehaviour
 
         for (int i = 0; i < _allCheckpoints.Length; i++)
         {
-            if (_allCheckpoints[i].GetComponent<Checkpoint>().IsActive)
+            if (_allCheckpoints[i].GetComponent<Checkpoint>().IsActive())
             {
                 float distance = Vector2.Distance(playerPos, _allCheckpoints[i].transform.position);
                 if (distance < minDistance)
@@ -53,8 +54,10 @@ public class DeathManager : MonoBehaviour
         _isRespawning = true;
 
         GameObject checkpoint = GetNearestActiveCheckpointToPlayer();
-        _respawnPosition = checkpoint.transform.position;
+        _respawnPosition = checkpoint.GetComponent<Checkpoint>().RespawnPoint();
         DestroyPlayer();
+
+        _totalDeaths++;
 
         Invoke("ResetSpawner", RespawnDelay);
         Invoke("SpawnPlayer", RespawnDelay);
