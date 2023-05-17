@@ -53,9 +53,15 @@ public class DeathManager : MonoBehaviour
             return;
         _isRespawning = true;
 
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
         GameObject checkpoint = GetNearestActiveCheckpointToPlayer();
         _respawnPosition = checkpoint.GetComponent<Checkpoint>().RespawnPoint();
-        DestroyPlayer();
+
+        player.GetComponent<PlayerController>().Kill();
+        player.GetComponent<PlayerAnimation>().StartDeathAnimation();
+
+        Invoke("DestroyPlayer", 0.5f);
 
         _totalDeaths++;
 

@@ -53,10 +53,19 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float MaxFallSpeed;
 
+    private bool _isDead = false;
+
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     void Update()
     {
+        if (_isDead)
+        {
+            rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            return;
+        }
+            
+
         _horizontalInput = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump"))
@@ -70,6 +79,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_isDead)
+            return;
+
         _isGrounded = IsTouchingGround();
         _isWalled = !_isGrounded && _horizontalInput != 0 && IsTouchingWall();
 
@@ -184,4 +196,6 @@ public class PlayerController : MonoBehaviour
     {
         SplatPS.Play();
     }
+
+    public void Kill() => _isDead = true;
 }
