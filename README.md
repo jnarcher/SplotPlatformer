@@ -12,4 +12,4 @@ Features Implemented:
 - spikes
 - one way platforms
 
-!(screenshot)
+![screenshot](https://github.com/jnarcher/SplotPlatformer/blob/main/gameScreenshot.png)
